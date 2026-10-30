@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://api.trademc.org; script-src 'self' 'unsafe-inline' https://api.trademc.org; connect-src 'self' https:; frame-src 'self' https:">
+<title>Магазин — Aure Lume and Black Sun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>Aure Lume and Black Sun<small>Королевство приключений</small></span>
+    </div>
+    <button class="nav-btn" data-page="index"><span>⌂</span>Главная</button>
+    <button class="nav-btn" data-page="play"><span>▶</span>Играть</button>
+    <button class="nav-btn active" data-page="store"><span>♜</span>Магазин</button>
+    <button class="nav-btn" data-page="server"><span>🌐</span>Серверы</button>
+    <button class="nav-btn" data-page="team"><span>♟</span>Состав</button>
+    <button class="nav-btn" data-page="profile"><span>👤</span>Кабинет</button>
+    <button class="nav-btn" data-page="misc"><span>☰</span>Прочее</button>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Магазин</h1>
+    <p class="page-sub">Донат и услуги сервера</p>
+    <div class="section-ornament">✦ ✦ ✦</div>
+
+    <div class="panel">
+      <div class="tag">TradeMC № 240781</div>
+      <h3 style="margin-top:8px">Купить донат</h3>
+      <p class="muted">Форма покупки загружается прямо здесь. Заполни ник, выбери товар и нажми «Купить».</p>
+      <div id="trademc-buyform" class="trademc-form"></div>
+      <p class="note" style="margin-top:12px">Автоматическая выдача на сервере работает через настройку TradeMC. Заполнение формы не означает успешную оплату.</p>
+    </div>
+
+    <p class="note" style="margin:16px 0">Справочный каталог ниже внесён вручную. Актуальную стоимость и доступность проверяй в форме выше.</p>
+
+    <div class="controls">
+      <input id="search" placeholder="Найти товар…">
+      <select id="sort">
+        <option value="default">По умолчанию</option>
+        <option value="asc">Дешевле</option>
+        <option value="desc">Дороже</option>
+      </select>
+    </div>
+
+    <div class="cards" id="cards"></div>
+    <p class="muted" id="empty" hidden>Ничего не найдено.</p>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://api.trademc.org/trademcapi.js"></script>
+<script>
+(function(){
+  function initBuyForm(){
+    if(!window.TrademcAPI || typeof TrademcAPI.GetBuyForm !== 'function'){
+      document.getElementById('trademc-buyform').innerHTML =
+        '<p class="muted">Форма оплаты сейчас недоступна. Обнови страницу.</p>';
+      return;
+    }
+    try {
+      TrademcAPI.GetBuyForm({"Shop":"240781","Title":"Купить донат","Nickname":"Введите ваш никнейм","Item":"Выберите товар","Coupon":"Введите купон, если есть","Button":"Купить","Success_URL":"https://playmyrealserver9.webtm.ru","Pending_URL":"https://trademc.org","Fail_URL":"https://playmyrealserver9.webtm.ru","PastPlaceID":"trademc-buyform"});
+      __wireTradeSelect();
+    } catch(e) {
+      document.getElementById('trademc-buyform').innerHTML =
+        '<p class="muted">Не удалось загрузить форму: ' + e.message + '</p>';
+    }
+  }
+
+  // Предвыбор привилегии в форме TradeMC по названию (matches catalog card)
+  function __wireTradeSelect(){
+    var pendingName = null;
+    var attempts = 0;
+    var timer = setInterval(function(){
+      var sel = document.querySelector('.trademc-buyform-form select[name="items"]');
+      if(!sel){
+        if(++attempts > 50){ clearInterval(timer); } // ~5 секунд
+        return;
+      }
+      clearInterval(timer);
+      window.__selectTradeItem = function(name){
+        pendingName = name;
+        if(!sel) return false;
+        var options = sel.options;
+        var needle = new RegExp('^\\s*' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+        for(var i = 0; i < options.length; i++){
+          if(needle.test(options[i].text)){
+            sel.selectedIndex = i;
+            // уведомить обработчик change (для полей ввода товара)
+            var evt = new Event('change', { bubbles: true });
+            sel.dispatchEvent(evt);
+            pendingName = null;
+            return true;
+          }
+        }
+        return false;
+      };
+      // если пользователь уже нажал «Купить» до загрузки формы — применить теперь
+      if(pendingName){
+        var r = window.__selectTradeItem(pendingName);
+        pendingName = r ? null : pendingName;
+      }
+    }, 100);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBuyForm);
+  } else {
+    initBuyForm();
+  }
+})();
+</script>
+<script src="app.js"></script>
+</body>
+</html>

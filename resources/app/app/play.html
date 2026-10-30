@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Играть — Aure Lume and Black Sun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>Aure Lume and Black Sun<small>Королевство приключений</small></span>
+    </div>
+    <button class="nav-btn" data-page="index"><span>⌂</span>Главная</button>
+    <button class="nav-btn active" data-page="play"><span>▶</span>Играть</button>
+    <button class="nav-btn" data-page="store"><span>♜</span>Магазин</button>
+    <button class="nav-btn" data-page="server"><span>🌐</span>Серверы</button>
+    <button class="nav-btn" data-page="team"><span>♟</span>Состав</button>
+    <button class="nav-btn" data-page="profile"><span>👤</span>Кабинет</button>
+    <button class="nav-btn" data-page="misc"><span>☰</span>Прочее</button>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Лаунчер</h1>
+    <p class="page-sub">Запусти Minecraft и играй на сервере</p>
+    <div class="section-ornament">✦ ✦ ✦</div>
+
+    <!-- Статус игры -->
+    <div class="panel" id="detectPanel">
+      <div class="tag">Minecraft Java Edition</div>
+      <h3 style="margin-top:8px">Minecraft</h3>
+      <p class="muted" id="gamePathStatus">Поиск Minecraft…</p>
+      <div class="actions">
+        <button class="btn secondary" id="reDetect">Проверить</button>
+      </div>
+      <p class="note" style="margin-top:10px" id="gamePathError"></p>
+    </div>
+
+    <!-- Установка, если игры нет -->
+    <div class="panel" id="installPanel" hidden>
+      <div class="tag">Первый запуск</div>
+      <h3 style="margin-top:8px"><span id="installTitle">Установить Minecraft 1.21.1</span></h3>
+      <p class="muted" id="installSub">Игра не найдена. Лаунчер скачает и установит Minecraft 1.21.1 из официальных источников Mojang (~1.5–2 ГБ). Не закрывай приложение во время установки.</p>
+      <div class="actions">
+        <button class="btn" id="installBtn"><span id="installBtnLabel">▶ Установить Minecraft 1.21.1</span></button>
+      </div>
+      <div style="margin-top:15px" id="installProgressWrap" hidden>
+        <div class="progress-track"><div class="progress-fill" id="installProgressBar" style="width:0%"></div></div>
+        <p class="muted" id="installStatus" style="margin-top:8px"></p>
+      </div>
+    </div>
+
+    <!-- Настройки и запуск -->
+    <div class="panel" id="launchPanel">
+      <div class="tag">Сервер: Aure Lume and Black Sun</div>
+      <div class="ip" style="margin-top:8px">aurelume7and7blacksun.play.ski</div>
+      <p class="muted" style="margin:8px 0 14px">Подключение к серверу произойдёт сразу после загрузки.</p>
+
+      <button class="btn launcher-play" id="launch">▶ Запустить игру</button>
+      <p class="note" style="margin-top:12px" id="launchStatus"></p>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

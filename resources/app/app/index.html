@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Главная — Aure Lume and Black Sun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>Aure Lume and Black Sun<small>Королевство приключений</small></span>
+    </div>
+    <button class="nav-btn active" data-page="index"><span>⌂</span>Главная</button>
+    <button class="nav-btn" data-page="play"><span>▶</span>Играть</button>
+    <button class="nav-btn" data-page="store"><span>♜</span>Магазин</button>
+    <button class="nav-btn" data-page="server"><span>🌐</span>Серверы</button>
+    <button class="nav-btn" data-page="team"><span>♟</span>Состав</button>
+    <button class="nav-btn" data-page="profile"><span>👤</span>Кабинет</button>
+    <button class="nav-btn" data-page="misc"><span>☰</span>Прочее</button>
+  </aside>
+
+  <main class="main">
+    <div class="hero">
+      <div class="tag">Minecraft · 1.16.5–26.4</div>
+      <h1>Твой мир.<br>Твои правила.</h1>
+      <p>Строй, исследуй и играй вместе с друзьями на нашем сервере.</p>
+      <div class="actions">
+        <button class="btn" data-page="server">Начать играть</button>
+        <button class="btn secondary" data-page="store">Магазин</button>
+      </div>
+      <div class="world">🌳🧱⛏️</div>
+    </div>
+
+    <div class="panel">
+      <h3>Всё под рукой</h3>
+      <p class="muted">Адрес сервера, магазин TradeMC, состав и твой локальный профиль — в одном приложении.</p>
+      <p class="note">Это приложение сообщества, а не игра Minecraft. Для подключения нужен Minecraft Java Edition.</p>
+    </div>
+
+    <div class="section-ornament">✦ ✦ ✦</div>
+
+    <div class="panel">
+      <h3>Промокод <span style="color:var(--gold)">one_GAME</span></h3>
+      <p class="muted">Введи его в форме TradeMC. Условия и наличие скидки определяет магазин.</p>
+      <div class="actions">
+        <button class="btn secondary" id="copyCoupon">Скопировать промокод</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

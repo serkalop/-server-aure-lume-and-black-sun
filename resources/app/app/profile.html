@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Личный кабинет — Aure Lume and Black Sun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>Aure Lume and Black Sun<small>Королевство приключений</small></span>
+    </div>
+    <button class="nav-btn" data-page="index"><span>⌂</span>Главная</button>
+    <button class="nav-btn" data-page="play"><span>▶</span>Играть</button>
+    <button class="nav-btn" data-page="store"><span>♜</span>Магазин</button>
+    <button class="nav-btn" data-page="server"><span>🌐</span>Серверы</button>
+    <button class="nav-btn" data-page="team"><span>♟</span>Состав</button>
+    <button class="nav-btn active" data-page="profile"><span>👤</span>Кабинет</button>
+    <button class="nav-btn" data-page="misc"><span>☰</span>Прочее</button>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Личный кабинет</h1>
+    <p class="page-sub">Вход через аккаунт сайта</p>
+    <div class="section-ornament">✦ ✦ ✦</div>
+
+    <!-- Блок входа (гость) -->
+    <div class="panel" id="authGuest">
+      <h3>Вход в кабинет</h3>
+      <p class="note" style="margin:4px 0 16px">Используйте логин и пароль, которые вы создали на сайте Aure Lume and Black Sun.</p>
+
+      <div class="auth-tabs" style="display:flex;gap:8px;margin-bottom:16px">
+        <button type="button" class="btn secondary" id="tabAuthLogin">Вход</button>
+        <button type="button" class="btn" id="tabAuthRegister">Регистрация</button>
+      </div>
+
+      <div id="authPaneLogin">
+        <div class="profile-form" style="grid-template-columns:1fr">
+          <label>Логин
+            <input id="authUser" autocomplete="username" placeholder="Ваш логин на сайте">
+          </label>
+          <label>Пароль
+            <input id="authPass" type="password" autocomplete="current-password" placeholder="Пароль">
+          </label>
+          <p class="error" id="authErr"></p>
+          <button class="btn" id="authLoginBtn">Войти</button>
+        </div>
+
+        <div class="auth-tabs" style="border-top:1px dashed var(--line);margin-top:18px;padding-top:14px;display:flex;gap:8px;align-items:center">
+          <span class="muted" style="font-size:13px">или через Telegram:</span>
+        </div>
+        <div class="profile-form" style="grid-template-columns:1fr">
+          <label>Код из Telegram
+            <input id="tgLoginCode" maxlength="6" inputmode="numeric" placeholder="6 цифр из /code_cab в боте">
+          </label>
+          <p class="error" id="tgLoginErr"></p>
+          <button class="btn" id="tgLoginBtn">Войти по коду из Telegram</button>
+        </div>
+      </div>
+
+      <div id="authPaneRegister" style="display:none">
+        <div class="profile-form" style="grid-template-columns:1fr">
+          <label>Логин
+            <input id="regUser" autocomplete="username" placeholder="Придумайте логин (3–16 симв.)">
+          </label>
+          <label>Пароль
+            <input id="regPass" type="password" autocomplete="new-password" placeholder="Минимум 6 символов">
+          </label>
+          <label>Повторите пароль
+            <input id="regPass2" type="password" autocomplete="new-password" placeholder="Ещё раз">
+          </label>
+          <button class="btn" id="authRegisterBtn">Создать аккаунт</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Авторизованный кабинет -->
+    <div class="panel" id="authAuthed" hidden>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div class="avatar" id="authIconShow" style="background:linear-gradient(145deg,#d4af37,#a06a2a);overflow:hidden">👑</div>
+        <div>
+          <b id="authName" style="font-size:22px">—</b><br>
+          <small class="muted">Вы вошли через сайт</small>
+        </div>
+      </div>
+      <p class="muted">Ваш ник из аккаунта сайта будет использоваться при запуске игры.</p>
+      <div class="profile-form" style="grid-template-columns:1fr">
+        <label>Аватар (картинка профиля)
+          <input type="file" id="avatarFile" accept="image/png,image/jpeg,image/webp,image/gif">
+        </label>
+        <p class="error" id="avatarMsg" style="min-height:1em"></p>
+        <button class="btn" id="avatarUploadBtn">Загрузить аватар</button>
+      </div>
+      <div class="profile-form" style="grid-template-columns:1fr;margin-top:16px">
+        <label>Скин в Minecraft (PNG 64x64)
+          <input type="file" id="skinFile" accept="image/png">
+        </label>
+        <p class="error" id="skinMsg" style="min-height:1em"></p>
+        <button class="btn" id="skinUploadBtn">Загрузить скин</button>
+      </div>
+      <div class="actions" style="margin-top:16px">
+        <button class="btn gray" id="authLogoutBtn">Выйти из аккаунта</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+:root{
+  --bg:#1b1611;
+  --bg-deep:#14100b;
+  --panel:#f0e6c8;                 /* пергамент */
+  --panel2:#e6d7b0;
+  --line:#8b7355;                   /* бронза/старое железо */
+  --text:#3a2e23;                   /* тёмный текст на пергаменте */
+  --text-strong:#241a10;
+  --muted:#6b5a45;
+  --green:#cda354;                  /* золото (акцент) */
+  --green2:#a9853f;
+  --gold:#d4af37;
+  --blue:#7a6a4f;
+  --danger:#a82828;
+  --shadow:0 14px 40px rgba(0,0,0,.55)
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  color:var(--text);
+  font:16px/1.55 Georgia,"Cormorant Garamond","Times New Roman",serif;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 25% 10%, rgba(205,163,84,.08), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(205,163,84,.06), transparent 40%),
+    repeating-linear-gradient(45deg, #1b1611 0, #1b1611 3px, #17120d 3px, #17120d 6px),
+    var(--bg)
+}
+
+button{font:inherit;color:inherit;border:0;cursor:pointer}
+
+a{color:inherit;text-decoration:none}
+
+input,select{
+  font:inherit;color:var(--text);background:rgba(240,230,196,.85);
+  border:2px solid var(--line);border-radius:8px;padding:12px
+}
+input:focus,select:focus{outline:2px solid var(--gold);background:#fff}
+
+.app{min-height:100vh;display:flex}
+
+/* ================= SIDEBAR (castelo stone) ================= */
+.sidebar{
+  width:235px;
+  flex:none;
+  background:
+    linear-gradient(180deg,#2f281f,#241f18),
+    #241f18;
+  border-right:3px solid var(--line);
+  padding:24px 18px;
+  display:flex;flex-direction:column;gap:7px;
+  position:sticky;top:0;height:100vh;
+  box-shadow:inset -8px 0 20px rgba(0,0,0,.5)
+}
+
+.sidebar .brand{
+  display:flex;align-items:center;gap:12px;
+  font-weight:900;padding:4px 6px 20px;color:#f0e6c8
+}
+
+.brand-mark{
+  width:42px;height:42px;border-radius:10px;flex:none;
+  background:radial-gradient(circle at 35% 30%,#cda354,#8b6a30 70%);
+  box-shadow:inset -4px -5px 0 rgba(0,0,0,.35),0 0 0 3px #6d5e4e,0 6px 14px rgba(0,0,0,.5);
+  position:relative
+}
+.brand-mark:after{content:"";position:absolute;inset:7px;border:2px solid rgba(0,0,0,.3);border-radius:4px}
+.sidebar .brand small{display:block;color:#b8a88a;font-weight:600;font-size:11px;margin-top:2px;letter-spacing:.5px}
+
+.nav-btn{
+  background:none;color:#c9b890;
+  font-size:15px;padding:14px 15px;border-radius:8px;
+  display:flex;align-items:center;gap:12px;text-align:left;font-weight:700;
+  border:1px solid transparent
+}
+.nav-btn span{font-size:19px;min-width:24px}
+.nav-btn:hover{background:rgba(205,163,84,.15);color:#f0e6c8;border-color:rgba(205,163,84,.4)}
+.nav-btn.active{
+  color:#1a1512;background:linear-gradient(180deg,#d4af37,#b8912b);
+  border-color:#5c4033;box-shadow:inset 0 0 8px rgba(0,0,0,.25)
+}
+
+/* ================= MAIN ================= */
+.main{
+  flex:1;min-width:0;
+  padding:30px clamp(20px,4vw,48px) 60px;
+  max-width:1000px
+}
+
+.page-title{
+  font-size:30px;line-height:1.15;margin:0 0 4px;
+  color:#d4af37;text-transform:uppercase;letter-spacing:3px;
+  border-bottom:2px solid var(--line);display:inline-block;padding-bottom:6px
+}
+.page-sub{color:var(--muted);font-size:14px;margin:8px 0 26px;font-style:italic}
+
+.tag{
+  color:#6b4a2a;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;font-size:11px
+}
+
+/* ================= PANELS (pergament) ================= */
+.panel{
+  background:
+    linear-gradient(180deg,#f3ead0 0%,#f0e6c8 30%,#e9dbb6 70%,#f0e6c8 100%);
+  border:2px solid var(--line);
+  border-radius:6px;
+  padding:20px 22px;
+  box-shadow:
+    inset 0 0 22px rgba(139,107,66,.25),
+    inset 0 1px 0 rgba(255,255,255,.5),
+    var(--shadow);
+  position:relative
+}
+.panel + .panel{margin-top:18px}
+.panel h3{font-size:21px;margin:0 0 8px;color:var(--text-strong)}
+.panel p{margin:.3rem 0}
+.muted{color:var(--muted);font-size:13px}
+.note{color:var(--muted);font-size:12.5px;line-height:1.65;font-style:italic}
+
+/* ================= BUTTONS (coboine plates) ================= */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;
+  background:linear-gradient(180deg,#cda354,#a9853f);
+  color:#241a10;border:2px solid #5c4033;border-radius:8px;
+  padding:12px 20px;font-weight:800;min-height:46px;cursor:pointer;
+  transition:.15s transform,.15s filter;font-size:15px;
+  text-transform:uppercase;letter-spacing:1px;
+  box-shadow:inset 0 0 8px rgba(0,0,0,.2),0 4px 10px rgba(0,0,0,.35)
+}
+.btn:hover{filter:brightness(1.1)}
+.btn:active{transform:scale(.97)}
+.btn.secondary{background:linear-gradient(180deg,#8a7354,#6d5a40);color:#f0e6c8;border-color:#4a3a28}
+.btn.gray{background:linear-gradient(180deg,#7a6a55,#5f5240);color:#e9dbb6;border-color:#3f3527}
+
+.link{font:inherit;color:#8b6a30;background:none;border:0;cursor:pointer;padding:0;text-decoration:underline;font-weight:700}
+.steps{padding-left:22px;margin:10px 0;color:var(--text);line-height:1.75}
+.steps b{color:#8b5a2b}
+
+.progress-track{height:14px;background:#3a2e1f;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:inset 0 1px 4px rgba(0,0,0,.5)}
+.progress-fill{height:100%;background:linear-gradient(90deg,#a9853f,#d4af37);transition:width .2s}
+
+/* launcher */
+.launcher-play{
+  width:100%;min-height:60px;font-size:19px;border-radius:10px;
+  background:linear-gradient(180deg,#d4af37,#a9853f);
+  box-shadow:0 12px 28px rgba(0,0,0,.4)
+}
+.nick-row input{flex:1;min-width:200px;font-weight:700;letter-spacing:.3px;text-transform:none}
+#ramSelect{min-width:0}
+.launcher[hidden]{display:none}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+/* ================= HERO (banner) ================= */
+.hero{
+  border-radius:8px;padding:30px 28px;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#3a2e1f,#241c10);
+  border:3px solid #6d5e4e;
+  box-shadow:inset 0 0 40px rgba(0,0,0,.6),var(--shadow);
+  margin-bottom:18px;color:#f0e6c8
+}
+.hero .tag{position:relative;z-index:1;color:#d4af37}
+.hero h1{position:relative;z-index:1;font-size:40px;line-height:1.08;margin:14px 0 10px;max-width:440px;color:#f5eed8;text-shadow:2px 2px 0 rgba(0,0,0,.5)}
+.hero p{position:relative;z-index:1;color:#d9c9a8;max-width:440px;margin:0}
+.hero .world{
+  position:absolute;right:-6px;bottom:-22px;font-size:130px;letter-spacing:-18px;opacity:.18
+}
+
+/* ================= STORE ================= */
+.controls{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.controls input{flex:1;min-width:180px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.product{
+  background:#e8d9b0;border:2px solid #6d5e4e;border-radius:8px;padding:14px;
+  display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(0,0,0,.4)
+}
+.art{
+  height:86px;background:radial-gradient(circle at 35% 30%,#5c4a30,#3a2e1c);border:1px solid #6d5e4e;
+  border-radius:6px;display:grid;place-items:center;font-size:40px;margin-bottom:12px;flex:none;
+  box-shadow:inset 0 0 18px rgba(0,0,0,.5)
+}
+.product b{font-size:16px;display:block;color:var(--text-strong)}
+.product .price{color:#8b5a2b;font-weight:900;margin:6px 0 12px}
+.product .btn{width:100%;padding:10px;font-size:13px;min-height:38px}
+
+/* ================= IP ================= */
+.ip{font-size:18px;font-weight:800;color:var(--text-strong);overflow-wrap:anywhere;word-break:break-word}
+.field{color:var(--muted);font-size:13px;margin-top:6px}
+.field b{color:#8b6a30}
+
+/* ================= TEAM ================= */
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.person{display:flex;align-items:center;gap:14px;padding:16px;background:#e6d7b0}
+.avatar{
+  width:56px;height:56px;border-radius:50%;flex:none;
+  display:grid;place-items:center;font-size:28px;
+  background:radial-gradient(circle at 35% 30%,#8a6a3a,#4a3a22);
+  border:2px solid #c9a94f;box-shadow:inset 0 0 8px rgba(0,0,0,.4)
+}
+.person:nth-child(2) .avatar{background:radial-gradient(circle at 35% 30%,#5a6a3a,#2f4020)}
+.person:nth-child(3) .avatar{background:radial-gradient(circle at 35% 30%,#7a4a3a,#402a20)}
+.person:nth-child(4) .avatar{background:radial-gradient(circle at 35% 30%,#3a5a7a,#203040)}
+.person b{font-size:16px;display:block;color:var(--text-strong)}
+.person small{color:var(--muted);font-size:12.5px}
+
+/* ================= PROFILE ================= */
+.profile-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.profile-form label{display:grid;gap:6px;font-weight:700;font-size:13px;color:var(--text-strong)}
+.profile-form .btn{grid-column:1/-1;justify-self:start}
+.history{margin-top:14px;display:grid;gap:8px}
+.history-item{background:rgba(240,230,196,.6);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:13px}
+.history-item b{color:var(--text-strong)}
+.history-item small{display:block;color:var(--muted);margin-top:2px}
+
+.error{color:var(--danger);font-size:12.5px;min-height:18px;margin:0;font-weight:700}
+
+/* ================= TOAST ================= */
+.toast{
+  position:fixed;z-index:50;left:50%;bottom:26px;transform:translate(-50%,18px);
+  background:#241c10;color:#d4af37;border:2px solid #6d5e4e;padding:12px 20px;
+  border-radius:8px;font-weight:750;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:.25s;white-space:nowrap
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ================= TRADEMC ================= */
+.trademc-form{
+  margin-top:14px;padding:16px;
+  background:rgba(234,219,176,.6);border:2px dashed rgba(139,115,85,.7);border-radius:8px
+}
+.trademc-form label{color:var(--text-strong);font-weight:700;font-size:13px;display:block;margin-bottom:6px}
+.trademc-form input[type="text"],
+.trademc-form input[type="nickname"],
+.trademc-form input:not([type]),
+.trademc-form select{
+  width:100%;max-width:420px;background:rgba(240,230,196,.9);color:var(--text);
+  border:2px solid var(--line);border-radius:6px;padding:11px 12px;font:inherit;
+  margin-bottom:12px
+}
+.trademc-form button{
+  background:linear-gradient(180deg,#cda354,#a9853f);color:#241a10;border:2px solid #5c4033;
+  border-radius:8px;padding:12px 22px;font:inherit;font-weight:800;cursor:pointer;min-height:44px;
+  text-transform:uppercase
+}
+.trademc-form button:hover{filter:brightness(1.1)}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:640px){
+  .app{flex-direction:column}
+  .sidebar{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:3px solid var(--line)}
+  .sidebar .brand{width:100%}
+  .nav-btn{font-size:12.5px;padding:9px 10px;flex:1}
+  .page-title{font-size:24px}
+  .hero h1{font-size:29px}
+  .profile-form{grid-template-columns:1fr}
+}
+
+/* ============ ДОП. СРЕДНЕВЕКОВЫЙ ДЕКОР ============ */
+
+/* Старинные угловые накладки на панелях */
+.panel::before,
+.panel::after{
+  pointer-events:none;content:"";position:absolute;
+  width:22px;height:22px;border:3px solid var(--gold);
+  opacity:.85
+}
+.panel::before{top:-3px;left:-3px;border-right:none;border-bottom:none}
+.panel::after{bottom:-3px;right:-3px;border-left:none;border-top:none}
+
+/* Внутренняя пергаментная окантовка панели */
+.panel .panel-inner,
+.panel > h3::before{
+  content:"";display:block;width:42px;height:3px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  margin-bottom:10px
+}
+
+/* Боковое меню — резные золотые акценты и пункт-свиток */
+.sidebar .brand{position:relative}
+.sidebar .brand::after{
+  content:"";position:absolute;left:6px;right:6px;bottom:14px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent)
+}
+
+/* Заголовки страниц — янтарное свечение */
+.page-title{
+  text-shadow:0 1px 0 rgba(255,248,230,.6),0 0 18px rgba(205,163,84,.25);
+  position:relative
+}
+.page-title::after{
+  content:"";display:block;height:2px;margin-top:8px;
+  background:repeating-linear-gradient(90deg,var(--gold) 0 10px,transparent 10px 16px)
+}
+
+/* Баннер — каменная ниша с каменной кладкой и золотым ореолом */
+.hero{
+  border-radius:4px;
+  border:3px solid #7a6a50;
+  box-shadow:inset 0 0 0 4px #14100b,inset 0 0 0 6px rgba(205,163,84,.4),0 14px 40px rgba(0,0,0,.6)
+}
+.hero .tag{
+  display:inline-block;background:rgba(205,163,84,.18);color:#e6c875;
+  padding:4px 12px;border:1px solid rgba(205,163,84,.4);letter-spacing:2px
+}
+
+/* Личной кнопки — ручная ковка */
+.btn{
+  position:relative;
+}
+.btn::after{
+  content:"";position:absolute;left:4px;right:4px;top:3px;height:2px;
+  background:rgba(255,255,255,.35);border-radius:2px
+}
+.btn.secondary::after,.btn.gray::after{background:rgba(255,255,255,.18)}
+
+/* Кредиты-разделители под заголовками секций */
+.section-ornament{
+  text-align:center;color:var(--gold);letter-spacing:12px;font-size:14px;
+  margin:6px 0 4px;opacity:.9
+}
+
+/* Декоративный низ главной карточки-свитка (hero) */
+.hero::after{
+  content:"⚜";position:absolute;right:18px;top:14px;font-size:20px;
+  color:rgba(212,175,55,.55);text-shadow:0 2px 4px rgba(0,0,0,.5)
+}

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+<title>Прочее — Aure Lume and Black Sun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>Aure Lume and Black Sun<small>Королевство приключений</small></span>
+    </div>
+    <button class="nav-btn" data-page="index"><span>⌂</span>Главная</button>
+    <button class="nav-btn" data-page="play"><span>▶</span>Играть</button>
+    <button class="nav-btn" data-page="store"><span>♜</span>Магазин</button>
+    <button class="nav-btn" data-page="server"><span>🌐</span>Серверы</button>
+    <button class="nav-btn" data-page="team"><span>♟</span>Состав</button>
+    <button class="nav-btn" data-page="profile"><span>👤</span>Кабинет</button>
+    <button class="nav-btn active" data-page="misc"><span>☰</span>Прочее</button>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Прочее</h1>
+    <!-- Подзаголовок обновлён -->
+    <p class="page-sub">Всё остальное: соцсети, кошелёк и правила</p>
+    <div class="section-ornament">✦ ✦ ✦</div>
+
+    <!-- Наши соцсети -->
+    <section id="section-socials" hidden>
+      <div class="panel">
+        <h3>🌐 Наши соцсети</h3>
+        <p class="muted">Подпишись, чтобы быть в курсе событий.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+          <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">▶ YouTube</a>
+          <a class="btn" href="https://rutube.ru/" target="_blank" rel="noopener">🎬 Rutube</a>
+          <a class="btn" href="https://t.me/" target="_blank" rel="noopener">✈ Telegram</a>
+          <a class="btn" href="https://vk.com/" target="_blank" rel="noopener">👥 VK</a>
+        </div>
+      </div>
+      <button class="btn secondary" onclick="showMain()" style="margin:10px 0">← Назад в «Прочее»</button>
+    </section>
+
+    <!-- Кошелёк -->
+    <section id="section-wallet" hidden>
+      <div class="panel">
+        <h3>👛 Кошелёк</h3>
+        <p class="muted">Ваш баланс и бонусы.</p>
+        <p class="note">Кошелёк появится после подключения кабинета сайта.</p>
+      </div>
+      <button class="btn secondary" onclick="showMain()" style="margin:10px 0">← Назад в «Прочее»</button>
+    </section>
+
+    <!-- Бонусы -->
+    <section id="section-bonuses" hidden>
+      <div class="panel">
+        <h3>🎖 Бонусы</h3>
+        <p class="muted">Доступные бонусы и промокоды.</p>
+        <p class="note">Промокод: <b>one_GAME</b></p>
+      </div>
+      <button class="btn secondary" onclick="showMain()" style="margin:10px 0">← Назад в «Прочее»</button>
+    </section>
+
+    <!-- История транзакций -->
+    <section id="section-tx" hidden>
+      <div class="panel">
+        <h3>🧾 История транзакций</h3>
+        <p class="muted">Ваши покупки и начисления.</p>
+        <p class="note">История пока пуста.</p>
+      </div>
+      <button class="btn secondary" onclick="showMain()" style="margin:10px 0">← Назад в «Прочее»</button>
+    </section>
+
+    <!-- История активности -->
+    <section id="section-activity" hidden>
+      <div class="panel">
+        <h3>🕒 История активности</h3>
+        <p class="muted">Действия в кабинете.</p>
+        <p class="note">История пока пуста.</p>
+      </div>
+      <button class="btn secondary" onclick="showMain()" style="margin:10px 0">← Назад в «Прочее»</button>
+    </section>
+
+    <!-- Правила сообщества -->
+    <section id="section-rules" hidden>
+      <div class="panel">
+        <h3>📜 Правила сообщества</h3>
+        <p class="muted">Основные правила Aure Lume and Black Sun.</p>
+        <p class="note">Правила скоро будут опубликованы.</p>
+      </div>
+      <button class="btn secondary" onclick="showMain()" style="margin:10px 0">← Назад в «Прочее»</button>
+    </section>
+
+    <!-- Изменить пароль -->
+    <section id="section-password" hidden>
+      <div class="panel">
+        <h3>🔑 Изменить пароль</h3>
+        <p class="muted">Пароль действует и для входа в кабинет, и как пароль в Minecraft.</p>
+        <div class="profile-form" style="grid-template-columns:1fr">
+          <label>Текущий пароль<input id="cpOld" type="password" autocomplete="current-password" placeholder="••••••••"></label>
+          <label>Новый пароль<input id="cpNew" type="password" autocomplete="new-password" placeholder="Минимум 6 символов"></label>
+          <label>Повторите новый пароль<input id="cpNew2" type="password" autocomplete="new-password" placeholder="Ещё раз"></label>
+          <p class="error" id="cpErr"></p>
+          <button class="btn" id="cpBtn">Сменить пароль</button>
+        </div>
+      </div>
+      <button class="btn secondary" onclick="showMain()" style="margin:10px 0">← Назад в «Прочее»</button>
+    </section>
+
+    <!-- Главный список "Прочее" -->
+    <div id="mainList">
+      <div class="panel">
+        <h3>Разделы</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+          <button class="btn" onclick="openSec('socials')">🌐 Наши соцсети</button>
+          <button class="btn" onclick="openSec('wallet')">👛 Кошелёк</button>
+          <button class="btn" onclick="openSec('bonuses')">🎖 Бонусы</button>
+          <button class="btn" onclick="openSec('tx')">🧾 История транзакций</button>
+          <button class="btn" onclick="openSec('activity')">🕒 История активности</button>
+          <button class="btn" onclick="openSec('password')">🔑 Изменить пароль</button>
+          <button class="btn" onclick="openSec('rules')">📜 Правила сообщества</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script>
+var SECTION_IDS = ['socials','wallet','bonuses','tx','activity','rules','password'];
+function showMain(){
+  SECTION_IDS.forEach(function(id){
+    var el = document.getElementById('section-'+id);
+    if(el) el.hidden = true;
+  });
+  var main = document.getElementById('mainList');
+  if(main) main.hidden = false;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function openSec(id){
+  var el = document.getElementById('section-'+id);
+  if(!el) return;
+  var main = document.getElementById('mainList');
+  if(main) main.hidden = true;
+  SECTION_IDS.forEach(function(i){
+    var s = document.getElementById('section-'+i);
+    if(s) s.hidden = true;
+  });
+  el.hidden = false;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>

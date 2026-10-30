@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Серверы — Aure Lume and Black Sun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>Aure Lume and Black Sun<small>Королевство приключений</small></span>
+    </div>
+    <button class="nav-btn" data-page="index"><span>⌂</span>Главная</button>
+    <button class="nav-btn" data-page="play"><span>▶</span>Играть</button>
+    <button class="nav-btn" data-page="store"><span>♜</span>Магазин</button>
+    <button class="nav-btn active" data-page="server"><span>🌐</span>Серверы</button>
+    <button class="nav-btn" data-page="team"><span>♟</span>Состав</button>
+    <button class="nav-btn" data-page="profile"><span>👤</span>Кабинет</button>
+    <button class="nav-btn" data-page="misc"><span>☰</span>Прочее</button>
+  </aside>
+
+  <main class="main">
+    <h1 class="page-title">Серверы</h1>
+    <p class="page-sub">Подключение с ПК и телефона</p>
+    <div class="section-ornament">✦ ✦ ✦</div>
+
+    <div class="panel">
+      <div class="tag">Minecraft Java Edition · ПК</div>
+      <h3 style="margin-top:8px">Aure Lume and Black Sun</h3>
+      <div class="ip">aurelume7and7blacksun.play.ski</div>
+      <p class="muted">Версия: 1.16.5–26.4</p>
+      <div class="actions">
+        <button class="btn" data-copy="aurelume7and7blacksun.play.ski">Скопировать IP для ПК</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="tag">Minecraft Bedrock Edition · Телефон</div>
+      <h3 style="margin-top:8px">Подключение с телефона</h3>
+      <p class="muted">Адрес сервера:</p>
+      <div class="ip">aurelume7and7blacksun.play.ski</div>
+      <div class="field">Порт: <b>19132</b></div>
+      <div class="actions">
+        <button class="btn" data-copy="aurelume7and7blacksun.play.ski">Скопировать адрес</button>
+        <button class="btn secondary" data-copy="19132">Скопировать порт</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Как подключиться с телефона</h3>
+      <p class="muted">Открой Minecraft Bedrock → «Играть» → «Серверы» → «Добавить сервер». Название: Aure Lume and Black Sun. Адрес: aurelume7and7blacksun.play.ski. Порт: 19132. Сохрани сервер и нажми «Подключиться».</p>
+      <h3 style="margin-top:16px">Как подключиться с ПК</h3>
+      <p class="muted">Открой Minecraft Java Edition → «Сетевая игра» → «Добавить сервер». Введи aurelume7and7blacksun.play.ski и подключись.</p>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

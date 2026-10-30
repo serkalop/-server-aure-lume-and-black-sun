@@ -1,0 +1,1928 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10172b">
+<title>Aure Lume and Black Sun — Minecraft</title>
+
+<style>
+:root{
+  --bg:#080d1b;
+  --panel:#10182c;
+  --panel2:#17213a;
+  --text:#f4f7ff;
+  --muted:#99a8c7;
+  --green:#7df26d;
+  --green2:#37c95a;
+  --gold:#ffc95c;
+  --blue:#62b9ff;
+  --danger:#ff6c7c;
+  --line:rgba(255,255,255,.09);
+  --shadow:0 18px 45px rgba(0,0,0,.28)
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 30% -10%,#203c60 0,#0b1224 38%,var(--bg) 72%);
+  color:var(--text);
+  font:15px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh
+}
+
+button{
+  font:inherit;
+  color:inherit;
+  border:0;
+  cursor:pointer
+}
+
+a{
+  color:inherit;
+  text-decoration:none
+}
+
+.app{
+  max-width:760px;
+  margin:auto;
+  padding-bottom:90px
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:14px 17px 12px;
+  background:rgba(8,13,27,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  letter-spacing:.2px
+}
+
+.brand-mark{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:linear-gradient(145deg,#8bff72 0 36%,#2d9c44 37% 64%,#14662d 65%);
+  box-shadow:inset -5px -6px 0 rgba(0,0,0,.25),0 8px 20px rgba(61,211,81,.22);
+  position:relative
+}
+
+.brand-mark:after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:2px solid rgba(255,255,255,.28);
+  border-radius:5px
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-weight:600;
+  font-size:10px;
+  margin-top:1px
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  font-size:18px
+}
+
+.hero{
+  margin:18px 16px 0;
+  min-height:355px;
+  padding:28px 23px 23px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(147,218,255,.22);
+  border-radius:26px;
+  background:linear-gradient(
+    145deg,
+    rgba(38,113,155,.75),
+    rgba(18,31,73,.95) 57%,
+    rgba(32,48,105,.95)
+  );
+  box-shadow:var(--shadow)
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:auto -30px -70px -30px;
+  height:190px;
+  background:linear-gradient(
+    130deg,
+    #78d76b 0 25%,
+    #34934f 25% 43%,
+    #1b5e3c 43% 68%,
+    #123a38 68%
+  );
+  clip-path:polygon(
+    0 35%,15% 52%,30% 28%,48% 48%,
+    65% 19%,82% 40%,100% 12%,100% 100%,0 100%
+  );
+  opacity:.82
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  right:-18px;
+  bottom:39px;
+  width:105px;
+  height:82px;
+  background:linear-gradient(
+    90deg,
+    #7bd969 0 28%,
+    #4aaf55 28% 52%,
+    #328042 52%
+  );
+  clip-path:polygon(
+    0 23%,38% 23%,38% 0,70% 0,
+    70% 33%,100% 33%,100% 100%,0 100%
+  );
+  opacity:.8;
+  box-shadow:18px -12px 0 rgba(83,185,89,.6)
+}
+
+.eyebrow{
+  position:relative;
+  z-index:1;
+  color:#bfeaff;
+  font-weight:800;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  font-size:11px
+}
+
+.hero h1{
+  position:relative;
+  z-index:1;
+  font-size:34px;
+  line-height:1.03;
+  margin:12px 0 12px;
+  max-width:330px
+}
+
+.hero p{
+  position:relative;
+  z-index:1;
+  color:#d8e7ff;
+  max-width:350px;
+  margin:0 0 22px
+}
+
+.hero-actions{
+  position:relative;
+  z-index:2;
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap
+}
+
+.btn{
+  min-height:44px;
+  padding:0 16px;
+  border-radius:13px;
+  font-weight:850;
+  border:1px solid transparent;
+  transition:.18s transform,.18s filter
+}
+
+.btn:active{
+  transform:scale(.97)
+}
+
+.btn-primary{
+  background:var(--green);
+  color:#092512;
+  box-shadow:0 8px 22px rgba(125,242,109,.24)
+}
+
+.btn-secondary{
+  background:rgba(255,255,255,.11);
+  border-color:rgba(255,255,255,.19);
+  color:white
+}
+
+.section{
+  padding:25px 16px 0;
+  scroll-margin-top:85px
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:14px
+}
+
+.section h2{
+  font-size:22px;
+  line-height:1.15;
+  margin:0
+}
+
+.section-head span{
+  font-size:12px;
+  color:var(--muted)
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px
+}
+
+.stat{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:13px 9px;
+  text-align:center
+}
+
+.stat strong{
+  display:block;
+  font-size:21px;
+  color:var(--green)
+}
+
+.stat span{
+  font-size:11px;
+  color:var(--muted)
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px
+}
+
+.card{
+  background:linear-gradient(150deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:13px;
+  box-shadow:0 8px 24px rgba(0,0,0,.14)
+}
+
+.product-art{
+  height:94px;
+  border-radius:13px;
+  margin-bottom:11px;
+  display:grid;
+  place-items:center;
+  font-size:43px;
+  position:relative;
+  overflow:hidden
+}
+
+.product-art:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,.13),
+    transparent 70%
+  );
+  transform:translateX(-100%)
+}
+
+.card:hover .product-art:after{
+  transform:translateX(100%);
+  transition:1s
+}
+
+.art-red{background:linear-gradient(145deg,#661e2d,#bd3c4f)}
+.art-blue{background:linear-gradient(145deg,#164b77,#40a3e3)}
+.art-purple{background:linear-gradient(145deg,#40246d,#a25cdb)}
+.art-gold{background:linear-gradient(145deg,#765020,#e4a638)}
+
+.product-name{
+  font-weight:850;
+  margin-bottom:3px
+}
+
+.stars{
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:1px
+}
+
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:10px
+}
+
+.price{
+  font-size:17px;
+  font-weight:900
+}
+
+.buy{
+  padding:8px 11px;
+  border-radius:10px;
+  background:rgba(125,242,109,.14);
+  color:var(--green);
+  font-size:12px;
+  font-weight:850;
+  border:1px solid rgba(125,242,109,.26)
+}
+
+.server{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:linear-gradient(110deg,#122d2b,#14203a);
+  border:1px solid rgba(125,242,109,.2);
+  border-radius:18px;
+  padding:15px
+}
+
+.server-icon{
+  width:49px;
+  height:49px;
+  border-radius:14px;
+  background:#295b43;
+  display:grid;
+  place-items:center;
+  font-size:24px
+}
+
+.server-main{
+  min-width:0;
+  flex:1
+}
+
+.server-title{
+  font-weight:850
+}
+
+.server-ip{
+  color:var(--muted);
+  font-size:12px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+.copy{
+  background:rgba(255,255,255,.1);
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  font-size:17px
+}
+
+.features{
+  display:grid;
+  gap:10px
+}
+
+.feature{
+  display:flex;
+  gap:12px;
+  padding:13px 14px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px
+}
+
+.feature-icon{
+  width:35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:rgba(98,185,255,.15);
+  font-size:18px;
+  flex:none
+}
+
+.feature strong{
+  display:block;
+  margin-bottom:2px
+}
+
+.feature span{
+  font-size:12px;
+  color:var(--muted)
+}
+
+.team{
+  display:flex;
+  gap:10px;
+  overflow:auto;
+  padding-bottom:4px
+}
+
+.person{
+  min-width:125px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:14px;
+  text-align:center
+}
+
+.avatar{
+  width:51px;
+  height:51px;
+  border-radius:15px;
+  margin:0 auto 8px;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  background:linear-gradient(145deg,#4253a6,#8e61d0)
+}
+
+.person:nth-child(2) .avatar{
+  background:linear-gradient(145deg,#27846a,#a1c955)
+}
+
+.person:nth-child(3) .avatar{
+  background:linear-gradient(145deg,#a9574b,#e5a14c)
+}
+
+.person b{
+  font-size:13px
+}
+
+.person small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px
+}
+
+.contact{
+  background:linear-gradient(140deg,#1a2340,#11182c);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:19px
+}
+
+.contact p{
+  color:var(--muted);
+  margin:4px 0 15px
+}
+
+.contact-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 0;
+  border-top:1px solid var(--line)
+}
+
+.contact-row span:first-child{
+  font-size:20px
+}
+
+.contact-row b{
+  font-size:13px
+}
+
+.contact-row small{
+  display:block;
+  color:var(--muted);
+  font-size:11px
+}
+
+.bottom-nav{
+  position:fixed;
+  z-index:20;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:760px;
+  padding:8px max(12px,env(safe-area-inset-left))
+    calc(8px + env(safe-area-inset-bottom));
+  background:rgba(10,15,30,.91);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:4px
+}
+
+.nav-btn{
+  background:none;
+  color:var(--muted);
+  font-size:10px;
+  padding:4px 2px;
+  border-radius:11px
+}
+
+.nav-btn span{
+  display:block;
+  font-size:19px;
+  line-height:22px;
+  margin-bottom:2px
+}
+
+.nav-btn.active{
+  color:var(--green);
+  background:rgba(125,242,109,.1)
+}
+
+.toast{
+  position:fixed;
+  z-index:30;
+  left:50%;
+  bottom:88px;
+  transform:translate(-50%,15px);
+  background:#f0fff0;
+  color:#0b2710;
+  padding:11px 16px;
+  border-radius:13px;
+  font-weight:750;
+  box-shadow:var(--shadow);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  white-space:nowrap
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:40;
+  background:rgba(0,0,0,.64);
+  display:none;
+  align-items:end;
+  justify-content:center
+}
+
+.modal-backdrop.open{
+  display:flex
+}
+
+.modal{
+  width:min(100%,760px);
+  background:#111a30;
+  border:1px solid var(--line);
+  border-radius:25px 25px 0 0;
+  padding:21px 18px calc(25px + env(safe-area-inset-bottom));
+  box-shadow:0 -18px 50px rgba(0,0,0,.4);
+  animation:up .22s ease
+}
+
+.modal h3{
+  margin:0 0 6px;
+  font-size:22px
+}
+
+.modal p{
+  color:var(--muted);
+  margin:0 0 17px
+}
+
+.close{
+  float:right;
+  background:rgba(255,255,255,.1);
+  border-radius:10px;
+  width:34px;
+  height:34px;
+  font-size:20px
+}
+
+.modal .btn{
+  width:100%
+}
+
+@keyframes up{
+  from{
+    transform:translateY(40px);
+    opacity:.4
+  }
+  to{
+    transform:none;
+    opacity:1
+  }
+}
+
+.store-controls{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:13px
+}
+
+.store-controls input,
+.store-controls select{
+  background:var(--panel);
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+  font:inherit;
+  min-width:0
+}
+
+.store-controls input{
+  flex:1;
+  min-width:140px
+}
+
+.store-controls select{
+  max-width:100%
+}
+
+.catalog-note{
+  color:var(--muted);
+  font-size:12px;
+  margin:0 0 14px
+}
+
+.card[hidden]{
+  display:none
+}
+
+.store-empty{
+  color:var(--muted);
+  padding:18px 0
+}
+
+.account-panel{
+  background:linear-gradient(145deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px
+}
+
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-bottom:18px
+}
+
+.profile-icon{
+  width:60px;
+  height:60px;
+  border-radius:16px;
+  background:linear-gradient(145deg,#7df26d,#257b43);
+  display:grid;
+  place-items:center;
+  font-size:30px;
+  flex:none
+}
+
+.profile-head strong{
+  font-size:20px;
+  overflow-wrap:anywhere
+}
+
+.profile-head small{
+  display:block;
+  color:var(--muted);
+  font-size:12px
+}
+
+.profile-form{
+  display:grid;
+  gap:12px
+}
+
+.profile-form label{
+  display:grid;
+  gap:6px;
+  font-weight:650;
+  font-size:13px
+}
+
+.profile-form input,
+.profile-form select{
+  width:100%;
+  min-width:0;
+  padding:12px;
+  background:#0b1224;
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--text);
+  font:inherit
+}
+
+.profile-actions{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:15px
+}
+
+.account-note{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6
+}
+
+.request-list{
+  display:grid;
+  gap:10px;
+  margin-top:14px
+}
+
+.request-item{
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+  overflow-wrap:anywhere
+}
+
+.request-item small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px
+}
+
+.request-badge{
+  font-size:11px;
+  color:var(--gold)
+}
+
+.profile-error{
+  color:var(--danger);
+  font-size:12px;
+  min-height:18px;
+  margin:0
+}
+
+.profile-form input:focus,
+.profile-form select:focus{
+  outline:2px solid var(--green)
+}
+
+@media(min-width:620px){
+  .hero{
+    margin-top:25px;
+    min-height:390px;
+    padding:40px 36px
+  }
+
+  .hero h1{
+    font-size:46px
+  }
+
+  .section{
+    padding-left:24px;
+    padding-right:24px
+  }
+
+  .cards{
+    grid-template-columns:repeat(4,1fr)
+  }
+
+  .product-art{
+    height:100px
+  }
+
+  .modal-backdrop{
+    align-items:center
+  }
+
+  .modal{
+    width:min(440px,calc(100% - 30px));
+    border-radius:24px;
+    padding-bottom:22px
+  }
+}
+
+@media(min-width:1000px){
+  .app{
+    max-width:1320px;
+    padding-left:230px;
+    padding-bottom:50px
+  }
+
+  .topbar{
+    padding:20px 26px
+  }
+
+  .bottom-nav{
+    left:0;
+    top:0;
+    bottom:0;
+    transform:none;
+    width:230px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:100px 18px 24px;
+    border-top:0;
+    border-right:1px solid var(--line);
+    background:#0c1325
+  }
+
+  .bottom-nav:before{
+    content:"AURE LUME AND BLACK SUN";
+    position:absolute;
+    top:30px;
+    left:20px;
+    color:var(--green);
+    font-weight:900;
+    font-size:14px
+  }
+
+  .nav-btn{
+    text-align:left;
+    font-size:14px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:12px
+  }
+
+  .nav-btn span{
+    margin:0;
+    min-width:24px
+  }
+
+  .hero{
+    min-height:330px
+  }
+
+  .hero h1{
+    max-width:500px;
+    font-size:56px
+  }
+
+  .hero p{
+    max-width:500px
+  }
+
+  .cards{
+    grid-template-columns:repeat(5,minmax(0,1fr))
+  }
+
+  .team{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important
+  }
+
+  .person{
+    min-width:0
+  }
+
+  .profile-form{
+    grid-template-columns:1fr 1fr
+  }
+
+  .profile-error,
+  .profile-form>button{
+    grid-column:1/-1
+  }
+
+  .toast{
+    bottom:28px
+  }
+
+  .section{
+    scroll-margin-top:100px
+  }
+}
+
+:focus-visible{
+  outline:2px solid var(--green);
+  outline-offset:4px
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header class="topbar">
+  <a class="brand" href="#home">
+    <span class="brand-mark"></span>
+    <span>
+      Aure Lume and Black Sun
+      <small>Королевство приключений</small>
+    </span>
+  </a>
+
+  <button class="icon-btn" id="notify" aria-label="Личный кабинет">👤</button>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="eyebrow">Minecraft 1.16.5–26.4 · сервер открыт</div>
+
+  <h1>Твой мир.<br>Твои правила.</h1>
+
+  <p>
+    Огромный мир, мини-игры и дружелюбное сообщество.
+    Заходи строить, исследовать и побеждать.
+  </p>
+
+  <div class="hero-actions">
+    <button class="btn btn-primary" id="playNow">Начать играть</button>
+    <button class="btn btn-secondary" data-scroll="store">Магазин</button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="stats">
+    <div class="stat">
+      <strong>1.16.5–26.4</strong>
+      <span>Версия</span>
+    </div>
+
+    <div class="stat">
+      <strong>4.9★</strong>
+      <span>Рейтинг</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="store">
+  <div class="section-head">
+    <h2>Магазин</h2>
+    <span id="catalog-count">10 товаров</span>
+  </div>
+
+  <p class="catalog-note">
+    Каталог из 10 товаров. Магазин TradeMC № 240781 · промокод one_GAME.
+    Актуальную цену и товар проверь в форме оплаты на сайте магазина.
+  </p>
+
+  <div class="account-panel" style="margin-bottom:16px">
+    <div class="eyebrow">TradeMC · магазин № 240781</div>
+
+    <h3 style="margin:8px 0">Купить донат</h3>
+
+    <p class="account-note">
+      Введи свой никнейм, выбери товар и укажи промокод
+      <strong style="color:var(--green)">one_GAME</strong>
+      на сайте магазина.
+    </p>
+
+    <div class="profile-actions">
+      <a
+        class="btn btn-primary"
+        style="display:flex;align-items:center;justify-content:center"
+        href="https://playmyrealserver9.webtm.ru/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Открыть сайт магазина ↗
+      </a>
+
+      <button class="btn btn-secondary" id="copy-coupon" type="button">
+        Скопировать промокод
+      </button>
+    </div>
+
+    <p class="account-note">
+      Оплата выполняется на сайте магазина, не в приложении.
+      После успешной или неудачной оплаты переход выполняется на сайт:
+      https://playmyrealserver9.webtm.ru/
+    </p>
+  </div>
+
+  <div class="store-controls">
+    <input
+      id="product-search"
+      type="search"
+      placeholder="Найти товар…"
+      aria-label="Поиск товаров"
+    >
+
+    <select id="product-sort" aria-label="Сортировка товаров">
+      <option value="default">По умолчанию</option>
+      <option value="asc">Сначала дешевле</option>
+      <option value="desc">Сначала дороже</option>
+      <option value="name">По названию</option>
+    </select>
+  </div>
+
+  <p id="store-empty" class="store-empty" hidden>
+    Ничего не найдено. Попробуй другое название.
+  </p>
+
+  <div class="cards">
+
+    <article class="card">
+      <div class="product-art art-red">🛡️</div>
+      <div class="product-name">Разбан</div>
+      <div class="stars">★★★★★</div>
+      <div class="price-row">
+        <b class="price">50 ₽</b>
+        <button class="buy" data-product="Разбан">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-blue">⚔️</div>
+      <div class="product-name">Hero</div>
+      <div class="stars">★★★★★</div>
+      <div class="price-row">
+        <b class="price">40 ₽</b>
+        <button class="buy" data-product="Hero">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-purple">💎</div>
+      <div class="product-name">Titan</div>
+      <div class="stars">★★★★</div>
+      <div class="price-row">
+        <b class="price">90 ₽</b>
+        <button class="buy" data-product="Titan">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-gold">🐉</div>
+      <div class="product-name">Dragon</div>
+      <div class="stars">★★★★★</div>
+      <div class="price-row">
+        <b class="price">1 900 ₽</b>
+        <button class="buy" data-product="Dragon">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-blue">🧪</div>
+      <div class="product-name">Helper</div>
+      <div class="stars">★★★★★</div>
+      <div class="price-row">
+        <b class="price">6 666 ₽</b>
+        <button class="buy" data-product="Helper">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-red">🏹</div>
+      <div class="product-name">Avenger</div>
+      <div class="stars">★★★★</div>
+      <div class="price-row">
+        <b class="price">130 ₽</b>
+        <button class="buy" data-product="Avenger">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-gold">🔮</div>
+      <div class="product-name">Magister</div>
+      <div class="stars">★★★★</div>
+      <div class="price-row">
+        <b class="price">590 ₽</b>
+        <button class="buy" data-product="Magister">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-gold">🔊</div>
+      <div class="product-name">Размут</div>
+      <div class="stars">★★★★</div>
+      <div class="price-row">
+        <b class="price">25 ₽</b>
+        <button class="buy" data-product="Размут">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-blue">🪖</div>
+      <div class="product-name">Overlord</div>
+      <div class="stars">★★★★★</div>
+      <div class="price-row">
+        <b class="price">290 ₽</b>
+        <button class="buy" data-product="Overlord">Купить</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="product-art art-purple">🐯</div>
+      <div class="product-name">Imperator</div>
+      <div class="stars">★★★★★</div>
+      <div class="price-row">
+        <b class="price">999 ₽</b>
+        <button class="buy" data-product="Imperator">Купить</button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section" id="servers">
+  <div class="section-head">
+    <h2>Сервер</h2>
+  </div>
+
+  <div class="server">
+    <div class="server-icon">🖥️</div>
+
+    <div class="server-main">
+      <div class="server-title">Для ПК · Java Edition</div>
+      <div class="server-ip">aurelume7and7blacksun.play.ski</div>
+      <div style="font-size:12px;color:#a5b4a7;margin-top:4px">
+        Версии: 1.16.5–26.4
+      </div>
+    </div>
+
+    <button class="copy" id="copyIp" aria-label="Скопировать адрес для ПК">
+      ⧉
+    </button>
+  </div>
+
+  <div class="account-panel" style="margin-top:12px">
+    <div class="profile-head" style="margin-bottom:12px">
+      <div class="server-icon">📱</div>
+
+      <div>
+        <strong style="font-size:17px">
+          Для телефона · Bedrock Edition
+        </strong>
+        <small>Aure Lume and Black Sun</small>
+      </div>
+    </div>
+
+    <div class="account-note" style="margin:0">
+      Адрес сервера
+    </div>
+
+    <strong style="display:block;color:var(--green);overflow-wrap:anywhere">
+      aurelume7and7blacksun.play.ski
+    </strong>
+
+    <div style="margin-top:8px">
+      Порт: <strong style="color:var(--green)">19132</strong>
+    </div>
+
+    <div class="profile-actions">
+      <button class="btn btn-primary" id="copyMobileIp" type="button">
+        Скопировать адрес
+      </button>
+
+      <button class="btn btn-secondary" id="copyMobilePort" type="button">
+        Скопировать порт
+      </button>
+    </div>
+
+    <p class="account-note" style="margin-bottom:0">
+      В Minecraft на телефоне открой «Играть» → «Серверы» →
+      «Добавить сервер». Имя: Aure Lume and Black Sun.
+      Введи адрес и порт в отдельные поля.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Почему мы?</h2>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🏰</div>
+      <div>
+        <strong>Большой мир</strong>
+        <span>
+          Выживание, экономика и уникальные локации для приключений.
+        </span>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🎮</div>
+      <div>
+        <strong>Мини-игры</strong>
+        <span>
+          Сражайся с друзьями, проходи испытания и поднимайся в рейтинге.
+        </span>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">💬</div>
+      <div>
+        <strong>Живое сообщество</strong>
+        <span>
+          Дружелюбные игроки, события и поддержка каждый день.
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="team">
+  <div class="section-head">
+    <h2>Наш состав</h2>
+    <span>4 участника</span>
+  </div>
+
+  <div class="team">
+    <div class="person">
+      <div class="avatar">👑</div>
+      <b>Som54</b>
+      <small>Создатель-владелец</small>
+    </div>
+
+    <div class="person">
+      <div class="avatar">🛡️</div>
+      <b>ThomasWknd</b>
+      <small>Старший модератор</small>
+    </div>
+
+    <div class="person">
+      <div class="avatar">⚒️</div>
+      <b>DED_B_TRYCNKAX12</b>
+      <small>Модератор 3-го ранга</small>
+    </div>
+
+    <div class="person">
+      <div class="avatar">🧭</div>
+      <b>nfbrhfjf</b>
+      <small>Младший модератор</small>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contacts">
+  <div class="contact">
+    <div class="eyebrow">Есть вопросы?</div>
+    <h2>Мы рядом</h2>
+
+    <p>
+      Напиши нам — поможем начать игру и ответим на любые вопросы.
+    </p>
+
+    <div class="contact-row">
+      <span>✉️</span>
+      <div>
+        <b>server.help.selection@list.ru</b>
+        <small>Почта поддержки</small>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <span>📞</span>
+      <div>
+        <b>+7 995 509-69-85</b>
+        <small>Связь с администрацией</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="account">
+  <div class="section-head">
+    <h2>Личный кабинет</h2>
+    <span>Профиль игрока</span>
+  </div>
+
+  <div class="account-panel">
+    <div class="profile-head">
+      <div class="profile-icon" id="profile-avatar">⛏️</div>
+
+      <div>
+        <strong id="profile-name">Гость</strong>
+        <small id="profile-status">Профиль ещё не сохранён</small>
+      </div>
+    </div>
+
+    <p class="account-note">
+      Локальный кабинет: данные хранятся только в этом браузере.
+      Это не вход в аккаунт Minecraft или сервера.
+    </p>
+
+    <form id="profile-form" class="profile-form">
+      <label>
+        Ник в Minecraft
+        <input
+          id="profile-nick"
+          required
+          minlength="3"
+          maxlength="16"
+          pattern="[A-Za-z0-9_]{3,16}"
+          autocomplete="username"
+          placeholder="Например, Steve"
+        >
+      </label>
+
+      <label>
+        Почта для связи
+        <input
+          id="profile-email"
+          type="email"
+          maxlength="254"
+          autocomplete="email"
+          placeholder="you@example.com"
+        >
+      </label>
+
+      <label>
+        Аватар
+        <select id="profile-icon-select">
+          <option value="⛏️">⛏️ Шахтёр</option>
+          <option value="🧱">🧱 Строитель</option>
+          <option value="⚔️">⚔️ Воин</option>
+          <option value="💎">💎 Исследователь</option>
+          <option value="🌲">🌲 Путешественник</option>
+        </select>
+      </label>
+
+      <p class="profile-error" id="profile-error"></p>
+
+      <button class="btn btn-primary" type="submit">
+        Сохранить профиль
+      </button>
+    </form>
+
+    <div class="profile-actions">
+      <button
+        class="btn btn-secondary"
+        type="button"
+        data-scroll="store"
+      >
+        Перейти в магазин
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        type="button"
+        id="profile-delete"
+      >
+        Удалить данные
+      </button>
+    </div>
+
+    <p class="account-note">
+      Не вводи пароль от игры. Данные не синхронизируются
+      с другими устройствами.
+    </p>
+  </div>
+
+  <div class="section-head" style="margin-top:22px">
+    <h2>Мои заявки</h2>
+    <span id="request-count">0</span>
+  </div>
+
+  <div class="request-list" id="request-list"></div>
+</section>
+
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-nav="home">
+    <span>⌂</span>Главная
+  </button>
+
+  <button class="nav-btn" data-nav="store">
+    <span>♜</span>Магазин
+  </button>
+
+  <button class="nav-btn" data-nav="servers">
+    <span>🌐</span>Серверы
+  </button>
+
+  <button class="nav-btn" data-nav="team">
+    <span>♟</span>Состав
+  </button>
+
+  <button class="nav-btn" data-nav="account">
+    <span>👤</span>Кабинет
+  </button>
+</nav>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <button class="close" id="closeModal">×</button>
+
+    <h3 id="modalTitle">Начать игру</h3>
+
+    <p id="modalText">
+      Скопируй IP-адрес сервера и добавь его в Minecraft.
+    </p>
+
+    <button class="btn btn-primary" id="modalAction">
+      Скопировать IP сервера
+    </button>
+  </div>
+</div>
+
+<script>
+const $ = selector => document.querySelector(selector);
+
+const toast = message => {
+  const element = $("#toast");
+  element.textContent = message;
+  element.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(() => {
+    element.classList.remove("show");
+  }, 2400);
+};
+
+const go = id => {
+  document
+    .getElementById(id)
+    ?.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
+      button.classList.toggle(
+        "active",
+        button.dataset.nav === id
+      );
+    });
+};
+
+document
+  .querySelectorAll("[data-scroll]")
+  .forEach(button => {
+    button.onclick = () => go(button.dataset.scroll);
+  });
+
+document
+  .querySelectorAll(".nav-btn")
+  .forEach(button => {
+    button.onclick = () => go(button.dataset.nav);
+  });
+
+$("#notify").onclick = () => go("account");
+
+async function copyServerValue(value, message) {
+  try {
+    if (!navigator.clipboard) {
+      throw new Error("clipboard unavailable");
+    }
+
+    await navigator.clipboard.writeText(value);
+    toast(message);
+  } catch {
+    window.prompt("Скопируй значение вручную:", value);
+  }
+}
+
+$("#copyIp").onclick = () => {
+  copyServerValue(
+    "aurelume7and7blacksun.play.ski",
+    "Адрес для ПК скопирован"
+  );
+};
+
+$("#copyMobileIp").onclick = () => {
+  copyServerValue(
+    "aurelume7and7blacksun.play.ski",
+    "Адрес для телефона скопирован"
+  );
+};
+
+$("#copyMobilePort").onclick = () => {
+  copyServerValue(
+    "19132",
+    "Порт 19132 скопирован"
+  );
+};
+
+$("#playNow").onclick = () => {
+  $("#modalTitle").textContent = "Добро пожаловать!";
+  $("#modalText").textContent =
+    "Скопируй IP-адрес и добавь его в Minecraft. " +
+    "Версия сервера — 1.16.5–26.4.";
+  $("#modalAction").textContent = "Скопировать IP сервера";
+  $("#modal").classList.add("open");
+};
+
+let selectedProduct = null;
+
+const accountKey = "lord-games-profile-v1";
+
+let accountState = {
+  profile:null,
+  requests:[]
+};
+
+const validIcons = [
+  "⛏️",
+  "🧱",
+  "⚔️",
+  "💎",
+  "🌲"
+];
+
+try {
+  const saved = JSON.parse(
+    localStorage.getItem(accountKey) || "null"
+  );
+
+  if (saved && typeof saved === "object") {
+    if (
+      saved.profile &&
+      /^[A-Za-z0-9_]{3,16}$/.test(saved.profile.nick)
+    ) {
+      accountState.profile = {
+        nick:saved.profile.nick,
+        email:typeof saved.profile.email === "string"
+          ? saved.profile.email.slice(0,254)
+          : "",
+        icon:validIcons.includes(saved.profile.icon)
+          ? saved.profile.icon
+          : "⛏️"
+      };
+    }
+
+    if (Array.isArray(saved.requests)) {
+      accountState.requests = saved.requests
+        .filter(item =>
+          item &&
+          typeof item.name === "string" &&
+          typeof item.price === "string" &&
+          Number.isFinite(item.date)
+        )
+        .slice(0,50);
+    }
+  }
+} catch {
+  $("#profile-error").textContent =
+    "Не удалось прочитать профиль. Сохрани его заново.";
+}
+
+function persistAccount() {
+  try {
+    localStorage.setItem(
+      accountKey,
+      JSON.stringify(accountState)
+    );
+
+    return true;
+  } catch {
+    $("#profile-error").textContent =
+      "Браузер запретил сохранение данных.";
+
+    return false;
+  }
+}
+
+function renderAccount() {
+  const profile = accountState.profile;
+
+  $("#profile-name").textContent =
+    profile ? profile.nick : "Гость";
+
+  $("#profile-status").textContent =
+    profile
+      ? "Локальный профиль · не подтверждён сервером"
+      : "Профиль ещё не сохранён";
+
+  $("#profile-avatar").textContent =
+    profile ? profile.icon : "⛏️";
+
+  $("#profile-nick").value =
+    profile ? profile.nick : "";
+
+  $("#profile-email").value =
+    profile ? profile.email : "";
+
+  $("#profile-icon-select").value =
+    profile ? profile.icon : "⛏️";
+
+  $("#request-count").textContent =
+    accountState.requests.length;
+
+  const list = $("#request-list");
+  list.replaceChildren();
+
+  if (!accountState.requests.length) {
+    const empty = document.createElement("p");
+    empty.className = "account-note";
+    empty.textContent =
+      "История пока пуста. Выбери товар и открой сайт магазина.";
+    list.append(empty);
+  }
+
+  accountState.requests.forEach(request => {
+    const item = document.createElement("div");
+    item.className = "request-item";
+
+    const title = document.createElement("strong");
+    title.textContent =
+      request.name + " — " + request.price;
+
+    const badge = document.createElement("div");
+    badge.className = "request-badge";
+    badge.textContent =
+      "Переход к магазину · оплата не проверена";
+
+    const detail = document.createElement("small");
+    detail.textContent =
+      new Date(request.date).toLocaleString("ru-RU") +
+      " · Ник: " +
+      (request.nick || "не указан");
+
+    item.append(title, badge, detail);
+    list.append(item);
+  });
+}
+
+function recordRequest(product) {
+  accountState.requests.unshift({
+    name:product.name,
+    price:product.price,
+    nick:accountState.profile?.nick || "",
+    date:Date.now()
+  });
+
+  accountState.requests =
+    accountState.requests.slice(0,50);
+
+  persistAccount();
+  renderAccount();
+}
+
+const productCards = [
+  ...document.querySelectorAll("#store .card")
+];
+
+productCards.forEach((card, index) => {
+  card.dataset.order = index;
+
+  card.dataset.price = Number(
+    card
+      .querySelector(".price")
+      .textContent
+      .replace(/[^0-9]/g,"")
+  );
+
+  const button = card.querySelector(".buy");
+
+  button.onclick = () => {
+    selectedProduct = {
+      name:button.dataset.product,
+      price:card.querySelector(".price").textContent
+    };
+
+    const nickname =
+      accountState.profile?.nick ||
+      "своего игрока";
+
+    $("#modalTitle").textContent =
+      selectedProduct.name + " — " +
+      selectedProduct.price;
+
+    $("#modalText").textContent =
+      "Покупка через TradeMC, магазин № 240781. " +
+      "На сайте введи ник " + nickname +
+      ", выбери товар и проверь цену. " +
+      "Промокод: one_GAME.";
+
+    $("#modalAction").textContent =
+      "Открыть сайт магазина ↗";
+
+    $("#modal").classList.add("open");
+  };
+});
+
+const filterProducts = () => {
+  const query = $("#product-search")
+    .value
+    .trim()
+    .toLocaleLowerCase("ru");
+
+  const sort = $("#product-sort").value;
+
+  const cards = productCards
+    .slice()
+    .sort((a,b) => {
+      if (sort === "asc") {
+        return Number(a.dataset.price) -
+          Number(b.dataset.price);
+      }
+
+      if (sort === "desc") {
+        return Number(b.dataset.price) -
+          Number(a.dataset.price);
+      }
+
+      if (sort === "name") {
+        return a
+          .querySelector(".product-name")
+          .textContent
+          .localeCompare(
+            b.querySelector(".product-name").textContent,
+            "ru"
+          );
+      }
+
+      return Number(a.dataset.order) -
+        Number(b.dataset.order);
+    });
+
+  let count = 0;
+
+  cards.forEach(card => {
+    const name = card
+      .querySelector(".product-name")
+      .textContent
+      .toLocaleLowerCase("ru");
+
+    card.hidden = !name.includes(query);
+
+    if (!card.hidden) {
+      count++;
+    }
+
+    $("#store .cards").append(card);
+  });
+
+  $("#catalog-count").textContent =
+    "Найдено: " + count;
+
+  $("#store-empty").hidden = count > 0;
+};
+
+$("#product-search").oninput = filterProducts;
+$("#product-sort").onchange = filterProducts;
+
+$("#modalAction").onclick = () => {
+  if (
+    $("#modalTitle").textContent.includes("Добро")
+  ) {
+    navigator.clipboard?.writeText(
+      "aurelume7and7blacksun.play.ski"
+    );
+
+    toast("IP сервера скопирован");
+  } else if (selectedProduct) {
+    window.open(
+      "https://playmyrealserver9.webtm.ru/",
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+    recordRequest(selectedProduct);
+    toast("Переход на сайт магазина");
+  }
+
+  $("#modal").classList.remove("open");
+};
+
+$("#closeModal").onclick = () => {
+  $("#modal").classList.remove("open");
+};
+
+$("#modal").onclick = event => {
+  if (event.target.id === "modal") {
+    $("#modal").classList.remove("open");
+  }
+};
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+
+        if (id) {
+          document
+            .querySelectorAll(".nav-btn")
+            .forEach(button => {
+              button.classList.toggle(
+                "active",
+                button.dataset.nav === id
+              );
+            });
+        }
+      }
+    });
+  },
+  {
+    rootMargin:"-30% 0px -55%"
+  }
+);
+
+[
+  "home",
+  "store",
+  "servers",
+  "team",
+  "account"
+].forEach(id => {
+  observer.observe(document.getElementById(id));
+});
+
+$("#profile-form").onsubmit = event => {
+  event.preventDefault();
+
+  const nickname = $("#profile-nick")
+    .value
+    .trim();
+
+  if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+    $("#profile-error").textContent =
+      "Ник должен содержать 3–16 латинских букв, цифр или _.";
+
+    return;
+  }
+
+  $("#profile-error").textContent = "";
+
+  accountState.profile = {
+    nick:nickname,
+    email:$("#profile-email").value.trim(),
+    icon:$("#profile-icon-select").value
+  };
+
+  const saved = persistAccount();
+
+  renderAccount();
+
+  toast(
+    saved
+      ? "Профиль сохранён на устройстве"
+      : "Профиль сохранён только на эту сессию"
+  );
+};
+
+$("#profile-delete").onclick = () => {
+  if (
+    !confirm(
+      "Удалить локальный профиль и историю заявок?"
+    )
+  ) {
+    return;
+  }
+
+  accountState = {
+    profile:null,
+    requests:[]
+  };
+
+  $("#profile-error").textContent = "";
+
+  const saved = persistAccount();
+
+  renderAccount();
+
+  toast(
+    saved
+      ? "Локальные данные удалены"
+      : "Данные очищены"
+  );
+};
+
+$("#copy-coupon").onclick = async () => {
+  try {
+    if (!navigator.clipboard) {
+      throw new Error("clipboard unavailable");
+    }
+
+    await navigator.clipboard.writeText("one_GAME");
+    toast("Промокод скопирован");
+  } catch {
+    toast("Промокод: one_GAME");
+  }
+};
+
+renderAccount();
+</script>
+
+</body>
+</html>

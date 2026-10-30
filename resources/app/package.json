@@ -1,0 +1,14 @@
+{
+  "name": "lord-of-the-games",
+  "version": "1.0.0",
+  "description": "Aure Lume and Black Sun — приложение для сервера Minecraft",
+  "main": "main.js",
+  "author": "Aure Lume and Black Sun",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^31.0.0"
+  }
+}
